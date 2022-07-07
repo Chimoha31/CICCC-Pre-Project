@@ -1,12 +1,13 @@
 import React from "react";
+import "./ProductComponent.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ProductComponent = () => {
   const products = useSelector((state) => state.allProducts.products);
-  // console.log(products[0].title);
 
-  return (
-    <div style={{ height: "100vh", width: "100%", }}>
+  const renderList = products.map((product) => (
+    <Link to={`/product/${product.id}`} key={product.id}>
       <ul
         style={{
           display: "flex",
@@ -14,24 +15,44 @@ const ProductComponent = () => {
           justifyContent: "space-evenly",
           alignItems: "center",
           listStyle: "none",
-          width: "300px",
-          border: "1px solid #ccc",
-          height: "300px",
+          width: "350px",
+          height: "350px",
+          borderRadius: "8px",
+          cursor: "pointer",
         }}
+        className="product_ul"
+        key={product.id}
       >
         <li>
-          <img src="" alt="cloth" />
+          <img
+            src={product.image}
+            alt="cloth"
+            style={{ width: "150px", height: "150px" }}
+          />
         </li>
         <li>
-          {/* <h3>{products[0].title}</h3> */}
-        </li>
-        <li>
+          <h3>{product.title}</h3>
           <p>
-            Pellentesque habitant morbi tristique senectus et netus et malesuada
-            fames ac turpis egestas.
+            <strong>$ {product.price}</strong>
           </p>
+          <p>{product.category}</p>
         </li>
       </ul>
+    </Link>
+  ));
+
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "15px",
+        margin: "100px 0px",
+      }}
+    >
+      {renderList}
     </div>
   );
 };
