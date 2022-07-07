@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const ProductComponent = () => {
   const products = useSelector((state) => state.allProducts.products);
-  console.log(products[0].title);
+  // console.log(products[0].title);
 
   return (
     <div style={{ height: "100vh", width: "100%", }}>
@@ -23,7 +23,7 @@ const ProductComponent = () => {
           <img src="" alt="cloth" />
         </li>
         <li>
-          <h3>{products[0].title}</h3>
+          {/* <h3>{products[0].title}</h3> */}
         </li>
         <li>
           <p>
